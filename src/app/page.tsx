@@ -1,4 +1,5 @@
 'use client';
+import LandingPage from "@/components/LandingPage";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -59,13 +60,7 @@ export default function Home() {
   
   return (
     <div className="">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="url">Enter Url: </label>
-        <input id="url" type="text" name="url" value={url} onChange={onChange} />
-        <button type="submit">Submit</button>
-        {result(res)}
-        {showError(error)}
-      </form>
+     <LandingPage />
     </div>
   );
 }
