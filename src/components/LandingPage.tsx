@@ -14,25 +14,25 @@ export default function LandingPage() {
     const [error, setError] = useState("");
     const [res, setRes] = useState("");
 
-    const onChange = (event: any) => {
+    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newUrl = event.target.value;
         setUrl(newUrl);
     }
-    const handleSubmit = (event: any) => {
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        console.log("handling submit");
         fetch("http://localhost:3001/url", {
             method: "post",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-
-            //make sure to serialize your JSON body
             body: JSON.stringify({
                 url: url,
             })
         })
-            .then(async (response: any) => {
+            .then(async (response: Response) => {
 
                 if (response.status === 200) {
                     const result = await response.json();
@@ -51,13 +51,13 @@ export default function LandingPage() {
                     setRes("");
                 }
             })
-            .catch((error: any) => {
+            .catch((error: Error) => {
                 console.log(error);
                 setError("Error try after sometime");
             })
     }
 
-    const showError = (error: any) => {
+    const showError = (error: string) => {
         return error ? <div className="error-text">{error}</div> : null;
     };
 
@@ -65,9 +65,9 @@ export default function LandingPage() {
         if (res) {
             navigator.clipboard.writeText(res);
         }
-    }
+    };
 
-    const result = (res: any) => {
+    const result = (res: string) => {
         return res ? (
             <div className="result-text-wrapper">
                 <div className="result-text">
