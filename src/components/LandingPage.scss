@@ -31,7 +31,7 @@
                 margin-bottom: 8px;
             }
         }
-        .result-text-wrapper {
+        .result-text-wrapper, .error-text {
             display: flex;
             align-items: center;
             .result-text{
@@ -42,6 +42,10 @@
                     font-size: 20px;
                 }
             }
+        }
+        
+        .error-text {
+            font-size: 16px;
         }
     }
 }
