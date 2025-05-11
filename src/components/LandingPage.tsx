@@ -19,18 +19,20 @@ export default function LandingPage() {
         setUrl(newUrl);
     }
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const serverURL = process.env.SERVER_URL || "http://localhost:3001";
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log("handling submit");
-        fetch("http://localhost:3001/url", {
-            method: "post",
+        await fetch(`${serverURL}/url`, {
+            method: "POST",
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                "Accept": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 url: url,
-            })
+            }),
         })
             .then(async (response: Response) => {
 
