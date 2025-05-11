@@ -19,10 +19,12 @@ export default function LandingPage() {
         setUrl(newUrl);
     }
 
-    const serverURL = process.env.SERVER_URL || "http://localhost:3001";
+    const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3001";
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        console.log("server url");
+        console.log(serverURL);
         console.log("handling submit");
         await fetch(`${serverURL}/url`, {
             method: "POST",
