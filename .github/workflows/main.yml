@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - task/added-scss-and-update-frontend
+      - main
+      - master
 
 jobs:
   install-and-test:
